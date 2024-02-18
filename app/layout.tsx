@@ -17,11 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body className={inter.className}>
-        <Header title="Welcome to your Next.js app!" />
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <div className="h-[100dvh] flex flex-col">
+          <Header title="Welcome to your Next.js app!" />
+          <main className="flex min-h-screen flex-col items-center justify-between p-24">
             {children}
-        </main>
+          </main>
+        </div>
       </body>
     </html>
   );
