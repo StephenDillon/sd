@@ -4,6 +4,7 @@ export default {
     word: '',
     guesses: [],
     currentGuess: 0,
+    errorMessage: '',
     get won() {
         return this.guesses[this.currentGuess - 1] === this.word
     },
@@ -37,11 +38,18 @@ export default {
         this.currentGuess = 0
     },
     submitGuess() {
+        if (this.guesses[this.currentGuess].length !== 5) {
+            this.errorMessage = 'Word must be 5 characters long'
+            return
+        }
         if (words.includes(this.guesses[this.currentGuess])) {
             this.currentGuess += 1
+        } else {
+            this.errorMessage = 'Not a valid word'
         }
     },
-    handleKeyup(e) {
+    handleKeyup(e: { key: any }) {
+        this.errorMessage = ''
         if (this.won || this.lost) {
             return
         }

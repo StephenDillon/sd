@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./_header/header";
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +18,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      </head>
-      <body className={inter.className}>
-        <div className="h-[100dvh] flex flex-col">
-          <Header title="Welcome to your Next.js app!" />
-          <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {children}
-          </main>
-        </div>
+      <body className="overflow-y-hidden overflow-x-hidden">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+
+          <div>
+            <Header />
+            <main >
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
