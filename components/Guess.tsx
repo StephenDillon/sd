@@ -1,19 +1,22 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 export default function Guess({ word, guess, isGuessed }) {
     return (
-        <div className="grid grid-cols-5 gap-2 mb-2">
+        <Row>
             {new Array(5).fill(0).map((_, i) => {
                 const bgColor = !isGuessed
-                    ? 'bg-black'
+                    ? 'bg-dark'
                     : guess[i] === word[i]
-                        ? 'bg-green-400'
+                        ? 'bg-success'
                         : word.includes(guess[i])
-                            ? 'bg-yellow-400'
-                            : 'bg-black'
+                            ? 'bg-warning'
+                            : 'bg-dark'
                 return (
-                    <div key={i} className={`flex h-16 w-16 items-center justify-center border border-gray-400 font-bold uppercase text-white ${bgColor}`}>
+                    <Col key={i} style={{ height: '4rem', width: '4rem', borderColor: '#CBD5E0', fontSize: '2rem' }} className={`d-flex align-items-center justify-content-center border fw-bold text-uppercase text-white ${bgColor}`}>
                         {guess[i]}
-                    </div>)
+                    </Col>)
             })}
-        </div>
+        </Row>
     );
 }

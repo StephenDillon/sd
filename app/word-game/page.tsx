@@ -5,6 +5,9 @@ import { use, useEffect } from "react";
 import WordStore from "../../stores/WordStore";
 import Guess from "../../components/Guess";
 import Keyboard from "../../components/Keyboard";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default observer(function Home() {
   const store = useLocalObservable(() => WordStore)
@@ -17,20 +20,24 @@ export default observer(function Home() {
     }
   }, [store])
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center">
+    <div >
       <div>
-        <h3 className="text-3xl font-bold uppercase">Guess the word</h3>
+        <Container className="d-flex align-items-center justify-content-center">
+          <h3>Guess the word</h3>
+        </Container>
       </div>
 
-      <div className="flex h-screen w-screen flex-col items-center justify-center">
-        {store.guesses.map((_, i) => (
-          <Guess
-            key={i}
-            word={store.word}
-            guess={store.guesses[i]}
-            isGuessed={i < store.currentGuess}
-          />
-        ))}
+      <div>
+        <Container style={{ width: '20rem' }}>
+          {store.guesses.map((_, i) => (
+            <Guess
+              key={i}
+              word={store.word}
+              guess={store.guesses[i]}
+              isGuessed={i < store.currentGuess}
+            />
+          ))}
+        </Container>
 
         {store.errorMessage &&
           <div className="text-red-500">
