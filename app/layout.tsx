@@ -4,6 +4,8 @@ import Header from "./_header/header";
 import { ThemeProvider } from "@/components/theme-provider"
 import 'bootstrap/dist/css/bootstrap.css';
 import BootstrapClient from "@/components/BootstrapClient";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 export const metadata: Metadata = {
@@ -31,6 +33,8 @@ export default function RootLayout({
             <main >
               {children}
               <BootstrapClient />
+              <Analytics />
+              <SpeedInsights />
             </main>
           </div>
         </ThemeProvider>
